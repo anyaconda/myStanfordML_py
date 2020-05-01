@@ -1,6 +1,9 @@
 #meta 4/30/2020 Useful ML functions to reuse
 import numpy as np
 
+#todo: add
+# linear regression
+# polynomial feature mapping
 
 #################################################################
 #  Sigmoid function used for Logistic regression hypothesis
@@ -105,6 +108,7 @@ def costFunction_LogisticR(theta, X, y):
     to multiply: use np.dot(theta.T, X)
     refer: https://docs.scipy.org/doc/numpy/reference/generated/numpy.dot.html
     """
+
     # Initialize vars
     m = y.size  # number of training examples
 
@@ -136,8 +140,6 @@ def costFunction_LogisticR(theta, X, y):
 #################################################################
 # Compute Cost and Gradient for Logistic regression, Regularized
 #################################################################
-
-
 def costFunctionReg_LogisticR(theta, X, y, lambda_=1):
     """
     Compute cost and gradient for logistic regression with regularization.
@@ -187,8 +189,13 @@ def costFunctionReg_LogisticR(theta, X, y, lambda_=1):
 
     refer: https://docs.scipy.org/doc/numpy/reference/generated/numpy.dot.html
     """
+
     # Initialize vars
     m = y.size  # number of training examples
+
+    # convert labels to ints if their type is bool
+    if y.dtype == bool:
+        y = y.astype(int)
 
     # Return the following variables correctly
     J = 0
@@ -198,7 +205,7 @@ def costFunctionReg_LogisticR(theta, X, y, lambda_=1):
     # compute hypothesis
     # for linear regression was: y_hat = np.dot( X, theta)
     # for logistic regression
-    y_hat = myML.sigmoid(np.dot(X, theta))
+    y_hat = sigmoid(np.dot(X, theta))
 
     # compute cost
     part1 = -y * np.log(y_hat)
@@ -219,3 +226,8 @@ def costFunctionReg_LogisticR(theta, X, y, lambda_=1):
     # =============================================================
     return J, grad
 
+#################################################################
+# test $acdelete
+#################################################################
+def test(a, b):
+    print(a, b)
